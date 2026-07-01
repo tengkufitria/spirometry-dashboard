@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.glass {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.shadow-glow {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* DARK MODE */
+.dark .glass {
+  background: rgba(30,30,30,0.7);
+}
+
+.pulse-soft {
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1 }
+  50% { opacity: .6 }
+}
+
+.shadow-glow {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes pulse-soft {
+  0%,100% { opacity: 1; }
+  50% { opacity: .6; }
+}
+
+.pulse-soft {
+  animation: pulse-soft 2s infinite;
+}
+
+@layer components {
+  .bg-base {
+    @apply bg-surface dark:bg-surface-dark;
+  }
+
+  .bg-card {
+    @apply bg-surface-container-lowest dark:bg-surface-container-dark;
+  }
+
+  .text-primary-ui {
+    @apply text-on-surface dark:text-on-surface-dark;
+  }
+
+  .text-muted {
+    @apply text-on-surface-variant dark:text-on-surface-variant-dark;
+  }
+
+  .border-base {
+    @apply border border-border dark:border-border-dark;
+  }
+}
+
+@media print {
+  body {
+    background-color: white !important;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Hide scrollbars during print */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Force print background colors to show */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
